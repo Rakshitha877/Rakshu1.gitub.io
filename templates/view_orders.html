@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2><big>View Orders</big></h2>
+<form>
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Your Name</th>
+            <th>Medicine Name</th>
+            <th>Quantity</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for medicine in medicines %}
+        <tr>
+            <td>{{ medicine[0] }}</td>
+            <td>{{ medicine[1] }}</td>
+            <td>{{ medicine[2] }}</td>
+            <td>{{ medicine[3] }}</td>
+            
+            
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</form>
+{% endblock %}

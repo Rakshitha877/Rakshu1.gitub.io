@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Medicine Inventory</h2>
+    <form method="post" action="{{ url_for('search') }}">
+        <input type="text" name="query" placeholder="Search by medicine" value="{{ query }}">
+        <button type="submit">Search</button>
+    </form>
+    {% if medicines %}
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Medicine</th>
+                <th>Quantity</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for medicine in medicines %}
+            <tr>
+                <td>{{ medicine[0] }}</td>
+                <td>{{ medicine[1] }}</td>
+                <td>{{ medicine[2] }}</td>
+                <td>{{ medicine[3] }}</td>
+                <td>
+                    <span class="action-button details" onclick="location.href='{{ url_for('details', medicine_id=medicine[0]) }}'">Details</span>
+                    <span class="action-button delete" onclick="location.href='{{ url_for('delete_medicine', medicine_id=medicine[0]) }}'">Delete</span>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+        <p>No results found.</p>
+    {% endif %}
+{% endblock %}
